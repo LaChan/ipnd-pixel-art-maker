@@ -6,32 +6,30 @@ Student: Lachlan Hope
 */
 
 //Variable Declaration
-const bdy = document.querySelector('body');
-
 const colorInput = document.querySelector('#colorPicker');
 
 const sizeInput = document.querySelector('#sizePicker');
 
 let color = "#ffffff";
 
-let inputHeight = 0;
-
-let inputWidth = 0;
-
 //Setup Event Listeners
 sizeInput.addEventListener('submit', function(evt){
   evt.preventDefault();
+  let inputHeight = 0;
+  let inputWidth = 0;
   inputHeight = sizeInput.inputHeight.value;
   inputWidth = sizeInput.inputWidth.value;
   makeGrid(inputHeight, inputWidth);
 });
 
-colorInput.addEventListener('input',  function(evt){
+/*colorInput.addEventListener('input',  function(evt){
   color = colorInput.value
 });
+*/
 
 //Function to set color of an individual cell
 function setCellColor(evt){
+  color = colorInput.value
   evt.target.style.backgroundColor = color;
 };
 
@@ -39,9 +37,10 @@ function setCellColor(evt){
 function makeGrid(ih, iw) {
 
   //setup table element for grid, with positioning and styling
-  let grid = document.createElement('table');
-  grid.setAttribute("id", "drawing_grid");
+  let grid = document.getElementById("pixelCanvas")
+  grid.innerHTML = ("<table id=\"pixelCanvas\"> </table>");
   grid.addEventListener('click', setCellColor);
+  color = "#ffffff"
 
   //actually draw the cells
   for(var i = 0; i < ih; i++) {
@@ -51,13 +50,6 @@ function makeGrid(ih, iw) {
       td.style.backgroundColor = color;
       }
   }
-
-  //check for an existing table with drawing_grid id, and remove if present
-  let tbl = document.querySelector('#drawing_grid');
-  if (document.contains(tbl)){
-    bdy.removeChild(tbl);
-    bdy.appendChild(grid);
-  } else {
-    bdy.appendChild(grid);
-  }
+  document.body.appendChild(grid);
 }
+
