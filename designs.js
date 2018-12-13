@@ -38,6 +38,7 @@ function makeGrid(ih, iw) {
   //check input values aren't absurd
   if (ih > 50 | iw > 50){
     dh.innerHTML = ('<h2 id=\"dheading\" style=\"color:#9600FF;font-family:Roboto:font-size:16pt\">Please select a grid size less than 50</h2>');
+    grid.innerHTML = ("<table id=\"pixelCanvas\"> </table>");
   } else {
    //clear existing table, set default color, add positioning and styling\
    dh.innerHTML = ('<h2 id=\"dheading\">Design Canvas</h2>');
