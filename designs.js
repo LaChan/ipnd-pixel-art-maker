@@ -10,6 +10,10 @@ const colorInput = document.querySelector('#colorPicker');
 
 const sizeInput = document.querySelector('#sizePicker');
 
+const grid = document.getElementById("pixelCanvas")
+
+const dh = document.getElementById("dheading")
+
 let color = "#ffffff";
 
 //Setup Event Listeners
@@ -31,19 +35,24 @@ function setCellColor(evt){
 //Function to create the drawing grid
 function makeGrid(ih, iw) {
 
-  //clear existing table, set default color, add positioning and styling
-  let grid = document.getElementById("pixelCanvas")
-  grid.innerHTML = ("<table id=\"pixelCanvas\"> </table>");
-  grid.addEventListener('click', setCellColor);
-  color = "#ffffff"
+  //check input values aren't absurd
+  if (ih > 50 | iw > 50){
+    dh.innerHTML = ('<h2 id=\"dheading\" style=\"color:#9600FF;font-family:Roboto:font-size:16pt\">Please select a grid size less than 50</h2>');
+  } else {
+   //clear existing table, set default color, add positioning and styling\
+   dh.innerHTML = ('<h2 id=\"dheading\">Design Canvas</h2>');
+   grid.innerHTML = ("<table id=\"pixelCanvas\"> </table>");
+   grid.addEventListener('click', setCellColor);
+   color = "#ffffff"
 
-  //actually draw the cells
-  for(var i = 0; i < ih; i++) {
-    let tr = grid.insertRow();
-    for(var j = 0; j < iw; j++) {
-      let td = tr.insertCell(j);
-      td.style.backgroundColor = color;
-      }
+   //actually draw the cells
+   for(var i = 0; i < ih; i++) {
+     let tr = grid.insertRow();
+     for(var j = 0; j < iw; j++) {
+       let td = tr.insertCell(j);
+       td.style.backgroundColor = color;
+       }
+   }
   }
   document.body.appendChild(grid);
 }
