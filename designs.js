@@ -22,11 +22,6 @@ sizeInput.addEventListener('submit', function(evt){
   makeGrid(inputHeight, inputWidth);
 });
 
-/*colorInput.addEventListener('input',  function(evt){
-  color = colorInput.value
-});
-*/
-
 //Function to set color of an individual cell
 function setCellColor(evt){
   color = colorInput.value
@@ -36,7 +31,7 @@ function setCellColor(evt){
 //Function to create the drawing grid
 function makeGrid(ih, iw) {
 
-  //setup table element for grid, with positioning and styling
+  //clear existing table, set default color, add positioning and styling
   let grid = document.getElementById("pixelCanvas")
   grid.innerHTML = ("<table id=\"pixelCanvas\"> </table>");
   grid.addEventListener('click', setCellColor);
